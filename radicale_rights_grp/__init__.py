@@ -8,6 +8,7 @@ name = "radicale-rights-grp"
 class Rights(rights.BaseRights):
     def __init__(self, configuration, logger):
         super().__init__(configuration, logger)
+        self.groupnames = [gr.gr_name for gr in grp.getgrall()]
         self.group_prefix = self.configuration.get(
             "rights", "group_prefix", fallback=None
         )
@@ -38,15 +39,15 @@ class Rights(rights.BaseRights):
         if user == pathowner:
             self.logger.debug("User %r is pathowner. Access granted.", user)
             return True
-        else:
+        elif pathowner in self.groupnames:
             # Check if pathowner is group of user
             in_group = self.user_in_group(user, pathowner)
-            if in_group:
+            if in_group is True:
                 self.logger.debug(
                     "User %r is in pathowner group %r. Access granted.", user, pathowner
                 )
-            else:
-                self.logger.debug(
-                    "Access to path %r is not granted to user %r.", pathowner, user
-                )
-            return in_group
+                return True
+        self.logger.debug("Access to path %r is not granted to user %r.",
+                          pathowner,
+                          user)
+        return False
