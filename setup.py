@@ -23,8 +23,8 @@ This is a radicale plugin to give users access to every principal collection mat
     install_requires=["radicale"],
     author="ZEDV FB-Physik FU-Berlin",
     author_email="zedv@physik.fu-berlin.de",
-    url='https://github.com/sents/radicale-rights-ldap',
-    packages=["radicale_rights_ldap"],
+    url='https://gitlabph.physik.fu-berlin.de/fbedv/radicale/radicale-rights-grp',
+    packages=["radicale_rights_grp"],
     entry_points={
         "console_scripts": [
             "radicale_create_groups.py = radicale_rights_ldap.create_group_calendars:main"
