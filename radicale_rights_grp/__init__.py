@@ -9,7 +9,7 @@ class Rights(rights.BaseRights):
     def __init__(self, configuration, logger):
         super().__init__(configuration, logger)
         self.group_prefix = self.configuration.get(
-            "rights", "group_prefix", fallback=None
+            "rights", "group_prefix", fallback=""
         )
 
     def authorized(self, user, path, permissions):
@@ -29,16 +29,14 @@ class Rights(rights.BaseRights):
         sane_path = sanitize_path(path).lstrip("/")
 
         pathowner, _ = sane_path.split("/", maxsplit=1)
-        # pathowner can be a user or a group
-        if self.group_prefix:
-            maybe_groupname = self.group_prefix + pathowner
-        else:
-            maybe_groupname = pathowner
 
+        # pathowner can be a user...
         if user == pathowner:
             self.logger.debug("User %r is pathowner. Access granted.", user)
             return True
 
+        # ...or a group
+        maybe_groupname = self.group_prefix + pathowner
         try:
             group = grp.getgrnam(maybe_groupname)
             if user in group.gr_mem:
