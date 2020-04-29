@@ -38,20 +38,20 @@ class Rights(rights.BaseRights):
         if user == pathowner:
             self.logger.debug("User %r is pathowner. Access granted.", user)
             return True
-        else:
-            try:
-                group = grp.getgrnam(maybe_groupname)
-                if user in group.gr_mem:
-                    self.logger.debug(
-                        "User %r is in pathowner group %r. Access granted.",
-                        user,
-                        pathowner,
-                    )
-                return True
-            except KeyError:
+
+        try:
+            group = grp.getgrnam(maybe_groupname)
+            if user in group.gr_mem:
                 self.logger.debug(
-                    "Pathowner %r is neither the user nor a valid group.", pathowner,
+                    "User %r is in pathowner group %r. Access granted.",
+                    user,
+                    pathowner,
                 )
+                return True
+        except KeyError:
+            self.logger.debug(
+                "Pathowner %r is neither the user nor a valid group.", pathowner,
+            )
 
         self.logger.debug(
             "Access to path %r is not granted to user %r.", pathowner, user
