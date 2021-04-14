@@ -19,7 +19,7 @@ This is a radicale plugin to give users access to every principal collection mat
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
     ],
-    license="GNU GPLv3",
+    license="GNU AGPLv3",
     install_requires=["radicale"],
     author="ZEDV FB-Physik FU-Berlin",
     author_email="zedv@physik.fu-berlin.de",
