@@ -18,12 +18,14 @@ This is a radicale plugin to give users access to every principal collection mat
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     license="GNU AGPLv3",
-    install_requires=["radicale"],
-    author="ZEDV FB-Physik FU-Berlin",
-    author_email="zedv@physik.fu-berlin.de",
-    url='https://gitlabph.physik.fu-berlin.de/fbedv/radicale/radicale-rights-grp',
+    install_requires=["radicale>=3","uuid"],
+    author="Finn Krein",
+    author_email="finn@krein.moe",
+    url='https://github.com/sents/radicale-rights-grp',
     packages=["radicale_rights_grp"],
     entry_points={
         "console_scripts": [
