@@ -6,7 +6,7 @@ from distutils.core import setup
 
 setup(
     name="radicale-rights-grp",
-    version="0.1",
+    version="0.2",
     description="""
     A radicale plugin to give rights based on OS group membership """,
     long_description="""
@@ -20,6 +20,7 @@ This is a radicale plugin to give users access to every principal collection mat
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
     license="GNU AGPLv3",
     install_requires=["radicale>=3","uuid"],
@@ -29,7 +30,7 @@ This is a radicale plugin to give users access to every principal collection mat
     packages=["radicale_rights_grp"],
     entry_points={
         "console_scripts": [
-            "radicale_create_groups.py = radicale_rights_ldap.create_group_calendars:main"
+            "radicale_create_groups.py = radicale_rights_grp.create_group_calendars:main"
         ]
     },
 )

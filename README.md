@@ -12,11 +12,11 @@ The following configuration is needed:
 ```
 [rights]
 
-type = radicale-rights-ldap
+type = radicale-rights-grp
 
 # Optional; Strip a prefix from the OS groups.
 group_prefix="loc"
 ```
 
 This package also provides a command to create a canonical collection for a list of comma
-separated groups with `radicale_create_groups.py /etc/radicale/config group1,group2,...`.
+separated groups with `radicale_create_groups.py /etc/radicale/config -g group1,group2,...`.
